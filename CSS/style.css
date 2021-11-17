@@ -1,0 +1,94 @@
+body {
+    margin: 0%;
+    background-color: rgb(55, 0, 100);
+}
+
+#container {
+    width: 50vw;
+    height: 50vh;
+    margin: auto;
+    margin-top: 10%;
+}
+
+#game-grid {
+    width: 58%;
+    height: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-width: 5px;
+    border-color: rgb(83, 44, 114);
+}
+
+.grid-item:hover {
+     background-color: rgb(84, 58, 105);
+}
+
+.one {
+    border-bottom-style: solid;
+}
+
+.two {
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+}
+
+.three {
+    border-bottom-style: solid;
+}
+
+.four {
+    border-bottom-style: solid;
+}
+
+.five {
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+}
+
+.six {
+    border-bottom-style: solid;
+}
+
+.eight {
+    border-left-style: solid;
+    border-right-style: solid;
+}
+
+#player {
+    width: 100%;
+    height: 10%;
+    font-size: 7em;
+    font-family: 'Fredoka One', cursive;
+    color: rgb(84, 58, 105);
+    margin-top: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#player-one {
+    width: 11%;
+    border-width: 5px;
+    border-radius: 10px;
+    border-color: rgb(84, 58, 105);
+    padding-left: 3%;
+    padding-right: 2.8%;
+}
+
+#player-two {
+    width: 11%;
+    border-width: 5px;
+    border-radius: 10px;
+    border-color: rgb(84, 58, 105);
+    padding: 0px 3%;
+}
