@@ -2,7 +2,12 @@ var pickRandom = 0;
 const cellArray = ["grid-one", "grid-two", "grid-three", "grid-four", "grid-five", "grid-six", "grid-seven", "grid-eight", "grid-nine"];
 var win = false;
 var player = "";
-var columnsCheck;
+var columnsCheck = 0;
+var columnArray = [];
+var nextColumnItem;
+var rowsCheck = 0;
+var rowsArray = [];
+var nextRowItem;
 function randomPlayerStart() {
     pickRandom = Math.round(Math.random());
     if (pickRandom === 0) {
@@ -28,22 +33,30 @@ function insertObject(cell) {
 }
 
 function winCondition() {
-    console.log(document.getElementById(cellArray[0]).innerHTML);
-    console.log(typeof(document.getElementById(cellArray[0]).innerHTML));
-    console.log(document.getElementById(cellArray[3]).innerHTML);
     checkColumns();
 }
 
 function checkColumns() {
     columnsCheck = 0;
-    for (let c = 0; c < 3; c++) {
-        if (document.getElementById(cellArray[0 + columnsCheck]).innerHTML === document.getElementById(cellArray[3 + columnsCheck]).innerHTML) {
-            win = true;
-            c = 3;
-            if (win) {
-                document.getElementById('win-message').innerHTML = "You win!";
+    for (c = 0; c < 3; c++) {
+        nextColumnItem = 0;
+        if (document.getElementById(cellArray[columnsCheck]).innerText === "") {
+            columnsCheck++;
+        } else {
+            for (let i = 0; i < 3; i++) {
+                columnArray[i] = document.getElementById(cellArray[columnsCheck + nextColumnItem]).innerText;
+                nextColumnItem += 3;
+            }
+            if (columnArray[0] === columnArray[1] && columnArray[0] === columnArray[2]) {
+                alert("It works!");
+                c = 3;
+            } else {
+                columnsCheck++;
             }
         }
-        columnsCheck++;
     }
+}
+
+function checkRows() {
+
 }
