@@ -12,6 +12,7 @@ var secondDiagonal;
 var nextDiagnoalItem = 0;
 var who;
 var beenClicked = [];
+var allCells = 0;
 for (let x = 0; x < 9; x++) {
     beenClicked[x] = false; 
 }
@@ -25,16 +26,29 @@ function randomPlayerStart() {
 }
 
 function insertObject(cell) {
-    if (pickRandom === 0) {
-        document.getElementById(cell).innerHTML = "X";
-        document.getElementById('player-one').innerHTML = "O";
-        pickRandom = 1;
+    if (win) {
+        for (let y = 0; y < 9; y++) {
+            beenClicked[y] = true;
+        }
+        win = false;
+        document.getElementsByClassName('grid-item').style.cursor = "not-allowed";
+    } else if (beenClicked[cellArray.indexOf(cell)] === false) {
+        beenClicked[cellArray.indexOf(cell)] = true;
+        allCells++;
+        console.log(allCells);
+        if (pickRandom === 0) {
+            document.getElementById(cell).innerHTML = "X";
+            document.getElementById('player-one').innerHTML = "O";
+            pickRandom = 1;
+        } else {
+            document.getElementById(cell).innerHTML = "O";
+            document.getElementById('player-one').innerHTML = "X";
+            pickRandom = 0;
+        }
+        winCondition();
     } else {
-        document.getElementById(cell).innerHTML = "O";
-        document.getElementById('player-one').innerHTML = "X";
-        pickRandom = 0;
+        document.getElementById(cell).style.cursor = "not-allowed";
     }
-    winCondition();
 }
 
 function winCondition() {
@@ -45,7 +59,10 @@ function winCondition() {
     if (win) {
         document.getElementById('win-message').innerHTML = "Player " + who + " Won!";
         document.getElementById('reset').style.display = "block";
+    } else if (allCells === 9) {
+        document.getElementById('win-message').innerHTML = "Draw";
     }
+
 }
 
 function checkColumns() {
@@ -99,14 +116,13 @@ function checkDiagonal() {
         nextDiagnoalItem = 0;
         for (let d = 0; d < 3; d++) {
             diagonalArray[d] = document.getElementById(cellArray[nextDiagnoalItem]).innerText;
-            if (diagonalArray[0] === diagonalArray[1] && diagonalArray[0] === diagonalArray[2]) {
-                d = 3;
-                win = true;
-                who = columnArray[0];
-                secondDiagonal = false;
-            } else {
-                nextDiagnoalItem += 4;
-            }
+            nextDiagnoalItem += 4;
+        }
+        if (diagonalArray[0] === diagonalArray[1] && diagonalArray[0] === diagonalArray[2]) {
+            d = 3;
+            win = true;
+            who = columnArray[0];
+            secondDiagonal = false;
         }
     }
     if (document.getElementById(cellArray[2]).innerText === "") {
@@ -116,13 +132,12 @@ function checkDiagonal() {
             nextDiagnoalItem = 2;
             for (let e = 0; e < 3; e++) {
                 diagonalArray[e] = document.getElementById(cellArray[nextDiagnoalItem]).innerText;
-                if (diagonalArray[0] === diagonalArray[1] && diagonalArray[0] === diagonalArray[2]) {
-                    e = 3;
-                    win = true;
-                    who = columnArray[0];
-                } else {
-                    nextDiagnoalItem += 2;
-                }
+                nextDiagnoalItem += 2;
+            }
+            if (diagonalArray[0] === diagonalArray[1] && diagonalArray[0] === diagonalArray[2]) {
+                e = 3;
+                win = true;
+                who = diagonalArray[2];
             }
         }
     }
