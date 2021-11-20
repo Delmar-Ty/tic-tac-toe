@@ -31,7 +31,6 @@ function insertObject(cell) {
             beenClicked[y] = true;
         }
         win = false;
-        document.getElementsByClassName('grid-item').style.cursor = "not-allowed";
     } else if (beenClicked[cellArray.indexOf(cell)] === false) {
         beenClicked[cellArray.indexOf(cell)] = true;
         allCells++;
