@@ -35,7 +35,6 @@ function insertObject(cell) {
     } else if (beenClicked[cellArray.indexOf(cell)] === false) {
         beenClicked[cellArray.indexOf(cell)] = true;
         allCells++;
-        console.log(allCells);
         if (pickRandom === 0) {
             document.getElementById(cell).innerHTML = "X";
             document.getElementById('player-one').innerHTML = "O";
