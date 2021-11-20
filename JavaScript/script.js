@@ -99,7 +99,7 @@ function checkRows() {
             if (rowsArray[0] === rowsArray[1] && rowsArray[0] === rowsArray[2]) {
                 b = 3;
                 win = true;
-                who = columnArray[0];
+                who = rowsArray[0];
             }
             else {
                 rowsCheck += 3;
@@ -121,7 +121,7 @@ function checkDiagonal() {
         if (diagonalArray[0] === diagonalArray[1] && diagonalArray[0] === diagonalArray[2]) {
             d = 3;
             win = true;
-            who = columnArray[0];
+            who = diagonalArray[0];
             secondDiagonal = false;
         }
     }
